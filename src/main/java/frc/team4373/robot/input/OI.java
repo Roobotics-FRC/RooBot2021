@@ -1,8 +1,10 @@
 package frc.team4373.robot.input;
 
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team4373.robot.RobotMap;
-import frc.team4373.robot.input.filters.LogitechFilter;
-import frc.team4373.robot.input.filters.XboxFilter;
+import frc.team4373.robot.commands.shooter.ShooterFallbackShootCommand;
+import frc.team4373.robot.input.filters.*;
 
 /**
  * OI provides access to operator interface devices.
@@ -11,6 +13,9 @@ public final class OI {
     private static volatile OI oi = null;
     private RooJoystick driveJoystick;
     private RooJoystick operatorJoystick;
+
+    private Button shootButton;
+    private Button fallbackShootButton;
 
     private OI() {
         //FIXME: These filters need to be tested.
@@ -22,8 +27,24 @@ public final class OI {
          */
         this.driveJoystick = new RooJoystick(RobotMap.DRIVE_JOYSTICK_PORT,
                 new LogitechFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
+        driveJoystick.configureAxis(driveJoystick.getZChannel(),
+                new SwerveTwistFilter(), 0.05);
+        driveJoystick.configureAxis(driveJoystick.getThrottleChannel(),
+                new LogitechSliderAxisFilter(), 0.01);
         this.operatorJoystick = new RooJoystick(RobotMap.OPERATOR_JOYSTICK_PORT,
                 new XboxFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
+        operatorJoystick.configureAxis(RobotMap.OPER_ADJUST_SHOOT_SPEED_AXIS,
+                new XboxAdjustShootSpeedFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
+        operatorJoystick.configureAxis(RobotMap.OPER_WINCH_AXIS,
+                new XboxWinchFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
+
+        this.shootButton = new JoystickButton(this.operatorJoystick,
+                RobotMap.OPER_SHOOT_BUTTON);
+        // this.shootButton.whileHeld(new ShooterShootCommand());
+
+        this.fallbackShootButton = new JoystickButton(this.operatorJoystick,
+                RobotMap.OPER_FALLBACK_SHOOT_BUTTON);
+        this.fallbackShootButton.whileHeld(new ShooterFallbackShootCommand());
     }
 
     /**

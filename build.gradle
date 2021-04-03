@@ -9,7 +9,7 @@ buildscript {
 plugins {
     id "java"
     id "checkstyle"
-    id "edu.wpi.first.GradleRIO" version "2021.1.2"
+    id "edu.wpi.first.GradleRIO" version "2021.2.2"
     id "idea"
     id "com.github.spotbugs" version "3.0.0"
 }
@@ -19,6 +19,7 @@ targetCompatibility = 11
 
 repositories {
     mavenCentral()
+    maven { url 'https://raw.githubusercontent.com/Roobotics-FRC/RooMaven/master' }
 }
 
 checkstyle {
@@ -120,7 +121,7 @@ dependencies {
     implementation wpi.deps.wpilib()
     nativeZip wpi.deps.wpilibJni(wpi.platforms.roborio)
     nativeDesktopZip wpi.deps.wpilibJni(wpi.platforms.desktop)
-
+    implementation 'frc.team4373:rooswerve:2.0.1'
 
     implementation wpi.deps.vendor.java()
     nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)

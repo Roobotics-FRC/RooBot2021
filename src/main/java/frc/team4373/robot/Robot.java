@@ -1,7 +1,10 @@
 package frc.team4373.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.team4373.robot.commands.intake.DeployIntakeCommand;
+import frc.team4373.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,6 +29,11 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+        Climber.getInstance();
+        Drivetrain.getInstance();
+        Hopper.getInstance();
+        Intake.getInstance();
+        Shooter.getInstance();
     }
 
     /**
@@ -38,7 +46,13 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotPeriodic() {
-        CommandScheduler.getInstance().run();
+        Scheduler.getInstance().run();
+
+        Climber.getInstance().logToSmartDashboard();
+        Drivetrain.getInstance().logToSmartDashboard();
+        Hopper.getInstance().logToSmartDashboard();
+        Intake.getInstance().logToSmartDashboard();
+        Shooter.getInstance().logToSmartDashboard();
     }
 
     /**
@@ -53,6 +67,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopInit() {
+        Scheduler.getInstance().add(new DeployIntakeCommand());
     }
 
     /**
