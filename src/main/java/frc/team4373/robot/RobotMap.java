@@ -14,7 +14,8 @@ public class RobotMap {
      */
     public static SwerveConfig getSwerveConfig() {
         SwerveConfig.RobotDimensions dimensions = new SwerveConfig.RobotDimensions(30, 30);
-        SwerveConfig.PID drivePID = new SwerveConfig.PID(0, 0.5, 0, 0.2);
+        SwerveConfig.PID drivePID = new SwerveConfig.PID(0, 0.2, 0.002, 0.75);
+        SwerveConfig.PID altDrivePID = new SwerveConfig.PID(0, 0.075, 0.002, 0.95);
         SwerveConfig.PID rotatePID = new SwerveConfig.PID(0, 1, 0, 0.05);
         SwerveConfig.MotorConfig right1Drive = new SwerveConfig.MotorConfig(15,
                 true, NeutralMode.Brake, true, drivePID);
@@ -25,11 +26,11 @@ public class RobotMap {
         SwerveConfig.MotorConfig right2Rotate = new SwerveConfig.MotorConfig(12,
                 true, NeutralMode.Brake, false, rotatePID);
         SwerveConfig.MotorConfig left1Drive = new SwerveConfig.MotorConfig(13,
-                true, NeutralMode.Brake, true, drivePID);
+                true, NeutralMode.Brake, true, altDrivePID);
         SwerveConfig.MotorConfig left1Rotate = new SwerveConfig.MotorConfig(14,
                 true, NeutralMode.Brake, false, rotatePID);
         SwerveConfig.MotorConfig left2Drive = new SwerveConfig.MotorConfig(17,
-                false, NeutralMode.Brake, true, drivePID);
+                false, NeutralMode.Brake, true, altDrivePID);
         SwerveConfig.MotorConfig left2Rotate = new SwerveConfig.MotorConfig(18,
                 true, NeutralMode.Brake, false, rotatePID);
         double maxWheelSpeed = 7000;
