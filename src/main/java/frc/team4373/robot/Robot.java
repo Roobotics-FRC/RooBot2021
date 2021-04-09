@@ -1,10 +1,12 @@
 package frc.team4373.robot;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4373.robot.commands.intake.DeployIntakeCommand;
 import frc.team4373.robot.subsystems.*;
+import frc.team4373.swerve.SwerveDrivetrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,11 +31,25 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        Climber.getInstance();
-        Drivetrain.getInstance();
-        Hopper.getInstance();
-        Intake.getInstance();
-        Shooter.getInstance();
+        SendableChooser<SwerveDrivetrain.WheelID> chooser = new SendableChooser<>();
+        chooser.addOption("Right 1", SwerveDrivetrain.WheelID.RIGHT_1);
+        chooser.addOption("Right 2", SwerveDrivetrain.WheelID.RIGHT_2);
+        chooser.addOption("Left 1", SwerveDrivetrain.WheelID.LEFT_1);
+        chooser.addOption("Left 2", SwerveDrivetrain.WheelID.LEFT_2);
+        SmartDashboard.putData("swerve/wheel", chooser);
+        SmartDashboard.putNumber("swerve/drive/p", 0.1);
+        SmartDashboard.putNumber("swerve/drive/i", 0);
+        SmartDashboard.putNumber("swerve/drive/d", 0);
+        SmartDashboard.putNumber("swerve/rotate/p", 0.1);
+        SmartDashboard.putNumber("swerve/rotate/i", 0);
+        SmartDashboard.putNumber("swerve/rotate/d", 0);
+        SmartDashboard.putBoolean("swerve/set", false);
+
+        Climber.getInstance().logToSmartDashboard();
+        Drivetrain.getInstance().logToSmartDashboard();
+        Hopper.getInstance().logToSmartDashboard();
+        Intake.getInstance().logToSmartDashboard();
+        Shooter.getInstance().logToSmartDashboard();
     }
 
     /**
