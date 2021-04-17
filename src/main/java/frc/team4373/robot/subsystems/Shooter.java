@@ -61,12 +61,12 @@ public class Shooter extends Subsystem {
     public void setVelocity(double speed) {
         this.setVelocityRaw(speed * RobotMap.SHOOTER_MAX_SPEED_NATIVE_UNITS);
     }
-
     /**
      * Sets the velocity of the shooter in native units.
      * @param speed the velocity of the shooter, [0, MAX_SPEED].
      */
     public void setVelocityRaw(double speed) {
+        SmartDashboard.putNumber("velocityRawPercent", speed);
         speed = Math.max(0, Math.min(speed, RobotMap.SHOOTER_MAX_SPEED_NATIVE_UNITS));
         shooterMotor1.set(ControlMode.Velocity, speed);
     }

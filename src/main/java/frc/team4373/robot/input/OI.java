@@ -3,7 +3,9 @@ package frc.team4373.robot.input;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team4373.robot.RobotMap;
+import frc.team4373.robot.commands.drivetrain.ResetNorthCommand;
 import frc.team4373.robot.commands.shooter.ShooterFallbackShootCommand;
+import frc.team4373.robot.commands.shooter.ShooterShootCommand;
 import frc.team4373.robot.input.filters.*;
 
 /**
@@ -16,6 +18,7 @@ public final class OI {
 
     private Button shootButton;
     private Button fallbackShootButton;
+    private Button resetNorthButton;
 
     private OI() {
         //FIXME: These filters need to be tested.
@@ -25,6 +28,7 @@ public final class OI {
 
         Template for new filters: https://www.desmos.com/calculator/jbb9fc5zwh
          */
+
         this.driveJoystick = new RooJoystick(RobotMap.DRIVE_JOYSTICK_PORT,
                 new LogitechFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
         driveJoystick.configureAxis(driveJoystick.getZChannel(),
@@ -38,9 +42,13 @@ public final class OI {
         operatorJoystick.configureAxis(RobotMap.OPER_WINCH_AXIS,
                 new XboxWinchFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
 
+        this.resetNorthButton = new JoystickButton(this.driveJoystick,
+                RobotMap.DRIVE_RESET_NORTH_BUTTON);
+        this.resetNorthButton.whenPressed(new ResetNorthCommand());
+
         this.shootButton = new JoystickButton(this.operatorJoystick,
                 RobotMap.OPER_SHOOT_BUTTON);
-        // this.shootButton.whileHeld(new ShooterShootCommand());
+         this.shootButton.whileHeld(new ShooterShootCommand());
 
         this.fallbackShootButton = new JoystickButton(this.operatorJoystick,
                 RobotMap.OPER_FALLBACK_SHOOT_BUTTON);

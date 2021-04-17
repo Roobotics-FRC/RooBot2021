@@ -1,9 +1,12 @@
 package frc.team4373.robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4373.robot.commands.intake.DeployIntakeCommand;
+import frc.team4373.robot.input.OI;
 import frc.team4373.robot.subsystems.*;
 
 /**
@@ -14,6 +17,9 @@ import frc.team4373.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
+
+    public PowerDistributionPanel pdp = new PowerDistributionPanel(1);
+
     /**
      * Constructor for the Robot class. Variable initialization occurs here;
      * WPILib-related setup should occur in {@link #robotInit}.
@@ -53,6 +59,12 @@ public class Robot extends TimedRobot {
         Hopper.getInstance().logToSmartDashboard();
         Intake.getInstance().logToSmartDashboard();
         Shooter.getInstance().logToSmartDashboard();
+//
+//        SmartDashboard.putNumber("PDP Voltage (Volts)", pdp.getVoltage());
+//        SmartDashboard.putNumber("PDP Temp (Fº)", (pdp.getTemperature() * 9/5) + 32);
+//        SmartDashboard.putNumber("PDP Total Current (Amps)", pdp.getTotalCurrent());
+//        SmartDashboard.putNumber("PDP Total Power (Watts)", pdp.getTotalPower());
+        SmartDashboard.putNumber("Throttle", OI.getInstance().getDriveJoystick().rooGetThrottle());
     }
 
     /**

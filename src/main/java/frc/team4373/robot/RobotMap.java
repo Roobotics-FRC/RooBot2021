@@ -30,7 +30,7 @@ public class RobotMap {
         SwerveConfig.MotorConfig left1Rotate = new SwerveConfig.MotorConfig(14,
                 true, NeutralMode.Brake, false, rotatePID);
         SwerveConfig.MotorConfig left2Drive = new SwerveConfig.MotorConfig(17,
-                false, NeutralMode.Brake, true, altDrivePID);
+                true, NeutralMode.Brake, true, altDrivePID);
         SwerveConfig.MotorConfig left2Rotate = new SwerveConfig.MotorConfig(18,
                 true, NeutralMode.Brake, false, rotatePID);
         double maxWheelSpeed = 7000;
@@ -51,8 +51,9 @@ public class RobotMap {
     public static final double JOYSTICK_DEFAULT_DEADZONE = 0.09;
 
     // Buttons and axes
-    /*
+
     public static final int DRIVE_RESET_NORTH_BUTTON = 7;
+    /*
     public static final int DRIVE_NORTH_UP_BUTTON = 10;
     public static final int DRIVE_OWN_SHIP_UP_BUTTON = 12;
     public static final int DRIVE_SLOWER_SPEED_BUTTON = 2;
