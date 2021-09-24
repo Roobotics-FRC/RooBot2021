@@ -65,19 +65,19 @@ public class Climber extends Subsystem {
     }
 
     /**
-     * Raises winch 1 at the specified percent output (or stops it, if power = 0).
+     * Sets winch 1 at the specified percent output (or stops it, if power = 0).
      * @param power the percent of full output at which to raise, [0, 1].
      */
-    public void raiseLeftWinch(double power) {
+    public void setLeftWinch(double power) {
         power = constrainWinchOutput(power);
         this.leftWinch.set(ControlMode.PercentOutput, power);
     }
 
     /**
-     * Raises winch 2 at the specified percent output (or stops it, if power = 0).
+     * Sets winch 2 at the specified percent output (or stops it, if power = 0).
      * @param power the percent of full output at which to raise, [0, 1].
      */
-    public void raiseRightWinch(double power) {
+    public void setRightWinch(double power) {
         power = constrainWinchOutput(power);
         this.rightWinch.set(ControlMode.PercentOutput, power);
     }
@@ -106,7 +106,7 @@ public class Climber extends Subsystem {
      */
     private double constrainWinchOutput(double power) {
         if (power > 1) power = 1;
-        if (power < 0) power = 0;
+        if (power < -1) power = -1;
         power *= RobotMap.CLIMB_WINCH_MAX_SPEED;
         return power;
     }
