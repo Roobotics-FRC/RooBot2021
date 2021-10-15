@@ -30,7 +30,7 @@ public class RobotMap {
         SwerveConfig.MotorConfig left1Rotate = new SwerveConfig.MotorConfig(14,
                 true, NeutralMode.Brake, false, rotatePID);
         SwerveConfig.MotorConfig left2Drive = new SwerveConfig.MotorConfig(17,
-                true, NeutralMode.Brake, true, altDrivePID);
+                false, NeutralMode.Brake, true, altDrivePID);
         SwerveConfig.MotorConfig left2Rotate = new SwerveConfig.MotorConfig(18,
                 true, NeutralMode.Brake, false, rotatePID);
         double maxWheelSpeed = 7000;
@@ -84,14 +84,15 @@ public class RobotMap {
     public static final int OPER_HOPPER_DISLODGE_BUTTON = 5; // L bumper
     public static final int OPER_SHOOT_BUTTON = 1; // A button
     public static final int OPER_FALLBACK_SHOOT_BUTTON = 3; // X button
-    public static final int OPER_WINCH_AXIS = 5; // R stick Y
+    public static final int OPER_WINCH_AXIS_X = 4;
+    public static final int OPER_WINCH_AXIS_Y = 5; // R stick Y
     public static final int OPER_ADJUST_SHOOT_SPEED_AXIS = 1; // left stick Y
 
 
     public static final double OPER_ROTATE_VIB_INTENSITY = 0.5;
 
     // Speed constants
-    public static final double CLIMB_ARM_MOVE_SPEED = 0.3;
+    public static final double CLIMB_ARM_MOVE_SPEED = 0.15;
     public static final double CLIMB_WINCH_MAX_SPEED = 0.8;
     public static final double SHOOTER_MAX_SPEED_NATIVE_UNITS = 32500;
     public static final double DRIVE_SLOWER_SPEED_FACTOR = 4;
@@ -102,7 +103,7 @@ public class RobotMap {
     public static final double UPTAKE_INTAKE_SPEED = 0.45;
     public static final double DRIVE_ASSIST_MAX_TURN_SPEED = 0.2;
     public static final double SHOOT_FROM_WALL_SPEED = 0.63;
-    public static final double INTAKE_DEPLOY_SPEED = 0.3;
+    public static final double INTAKE_DEPLOY_SPEED = 0.5;
     public static final double INTAKE_DRAW_SPEED = 0.5;
     public static final double INTAKE_DISLODGE_SPEED = 0.15;
     public static final double HOPPER_SPEED = 0.5;

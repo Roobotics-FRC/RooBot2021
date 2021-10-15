@@ -37,10 +37,18 @@ public class ClimberCommand extends Command {
                 climber.stopArm();
                 break;
         }
-        this.climber.setLeftWinch(OI.getInstance().getOperatorJoystick()
-                .getAxis(RobotMap.OPER_WINCH_AXIS));
-        this.climber.setRightWinch(OI.getInstance().getOperatorJoystick()
-                .getAxis(RobotMap.OPER_WINCH_AXIS));
+
+        double x = OI.getInstance().getOperatorJoystick()
+                .getAxis(RobotMap.OPER_WINCH_AXIS_X);
+        double y = OI.getInstance().getOperatorJoystick()
+                .getAxis(RobotMap.OPER_WINCH_AXIS_Y);
+        if (x > 0) {
+            this.climber.setLeftWinch(y - x);
+            this.climber.setRightWinch(y);
+        } else {
+            this.climber.setLeftWinch(y);
+            this.climber.setRightWinch(y + x);
+        }
     }
 
     @Override

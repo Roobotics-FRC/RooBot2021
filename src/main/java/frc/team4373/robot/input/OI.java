@@ -39,7 +39,9 @@ public final class OI {
                 new XboxFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
         operatorJoystick.configureAxis(RobotMap.OPER_ADJUST_SHOOT_SPEED_AXIS,
                 new XboxAdjustShootSpeedFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
-        operatorJoystick.configureAxis(RobotMap.OPER_WINCH_AXIS,
+        operatorJoystick.configureAxis(RobotMap.OPER_WINCH_AXIS_Y,
+                new XboxWinchFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
+        operatorJoystick.configureAxis(RobotMap.OPER_WINCH_AXIS_X,
                 new XboxWinchFilter(), RobotMap.JOYSTICK_DEFAULT_DEADZONE);
 
         this.resetNorthButton = new JoystickButton(this.driveJoystick,
