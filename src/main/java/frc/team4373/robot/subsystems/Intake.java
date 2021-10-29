@@ -64,8 +64,16 @@ public class Intake extends Subsystem {
      * Deploys the intake. This will only run the deploy motor if the intake is retracted.
      */
     public void deploy() {
-        if (retractedLimitSwitch.get()) {
+        if (deployedLimitSwitch.get()) {
+            deployMotor.stopMotor();
+        } else {
             deployMotor.set(ControlMode.PercentOutput, RobotMap.INTAKE_DEPLOY_SPEED);
+        }
+    }
+
+    public void retract() {
+        if (deployedLimitSwitch.get()) {
+            deployMotor.set(ControlMode.PercentOutput, RobotMap.INTAKE_RETRACT_SPEED);
         } else {
             deployMotor.stopMotor();
         }
