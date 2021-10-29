@@ -29,6 +29,8 @@ public class Drivetrain extends SwerveDrivetrain {
 
     private Drivetrain() {
         super(RobotMap.getSwerveConfig());
+//        setBrakeMode(BrakeMode.OCTAGON);
+//        setMaxWheelAcceleration(0.1);
     }
 
     @Override
