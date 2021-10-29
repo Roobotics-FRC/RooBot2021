@@ -6,6 +6,6 @@ package frc.team4373.robot.input.filters;
 public class SwerveTwistFilter extends DoubleTypeFilter {
     @Override
     public Double applyFilter(Double val) {
-        return Math.pow(val, 3);
+        return Math.pow(val, 5);
     }
 }
