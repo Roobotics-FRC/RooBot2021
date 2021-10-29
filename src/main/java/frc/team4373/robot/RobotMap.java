@@ -8,6 +8,7 @@ import frc.team4373.swerve.SwerveConfig;
  */
 
 public class RobotMap {
+
     /**
      * Gets the config for the swerve drivetrain.
      * @return the config for the drivetrain.
@@ -80,7 +81,9 @@ public class RobotMap {
     public static final int DRIVE_SLOWER_SPEED_BUTTON = 2; //thumb button
     public static final int OPER_INTAKE_BUTTON = 3; // R trigger
     public static final int OPER_INTAKE_DISLODGE_BUTTON = 6; // R bumper
-    public static final int OPER_HOPPER_BUTTON = 2; // L trigger
+    public static final int OPER_INTAKE_RETRACT_BUTTON = 4;
+    public static final int OPER_INTAKE_DEPLOY_BUTTON = 2;
+    public static final int OPER_HOPPER_AXIS = 2; // L trigger
     public static final int OPER_HOPPER_DISLODGE_BUTTON = 5; // L bumper
     public static final int OPER_SHOOT_BUTTON = 1; // A button
     public static final int OPER_FALLBACK_SHOOT_BUTTON = 3; // X button
@@ -92,7 +95,7 @@ public class RobotMap {
     public static final double OPER_ROTATE_VIB_INTENSITY = 0.5;
 
     // Speed constants
-    public static final double CLIMB_ARM_MOVE_SPEED = 0.15;
+    public static final double CLIMB_ARM_MOVE_SPEED = 0.25;
     public static final double CLIMB_WINCH_MAX_SPEED = 0.8;
     public static final double SHOOTER_MAX_SPEED_NATIVE_UNITS = 32500;
     public static final double DRIVE_SLOWER_SPEED_FACTOR = 4;
@@ -103,7 +106,8 @@ public class RobotMap {
     public static final double UPTAKE_INTAKE_SPEED = 0.45;
     public static final double DRIVE_ASSIST_MAX_TURN_SPEED = 0.2;
     public static final double SHOOT_FROM_WALL_SPEED = 0.63;
-    public static final double INTAKE_DEPLOY_SPEED = 0.5;
+    public static final double INTAKE_DEPLOY_SPEED = 0.2;
+    public static final double INTAKE_RETRACT_SPEED = -0.4;
     public static final double INTAKE_DRAW_SPEED = 0.5;
     public static final double INTAKE_DISLODGE_SPEED = 0.15;
     public static final double HOPPER_SPEED = 0.5;
@@ -160,7 +164,7 @@ public class RobotMap {
             new MotorConfig(35, true, NeutralMode.Brake);
 
     // Timeouts
-    public static final double AUTON_SHOOT_TIME_SEC = 5;
+    public static final double AUTON_SHOOT_TIME_SEC = 2;
     // time to wait before engaging drive-straight assist (ms)
     public static final double DRIVE_STRAIGHT_COOLDOWN_MS = 500;
 
