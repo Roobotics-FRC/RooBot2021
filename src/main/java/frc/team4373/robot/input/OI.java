@@ -2,8 +2,11 @@ package frc.team4373.robot.input;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team4373.robot.Robot;
 import frc.team4373.robot.RobotMap;
 import frc.team4373.robot.commands.drivetrain.ResetNorthCommand;
+import frc.team4373.robot.commands.intake.DeployIntakeCommand;
+import frc.team4373.robot.commands.intake.RetractIntakeCommand;
 import frc.team4373.robot.commands.shooter.ShooterFallbackShootCommand;
 import frc.team4373.robot.commands.shooter.ShooterShootCommand;
 import frc.team4373.robot.input.filters.*;
@@ -19,6 +22,8 @@ public final class OI {
     private Button shootButton;
     private Button fallbackShootButton;
     private Button resetNorthButton;
+    private Button retractIntakeButton;
+    private Button deployIntakeButton;
 
     private OI() {
         //FIXME: These filters need to be tested.
@@ -55,6 +60,12 @@ public final class OI {
         this.fallbackShootButton = new JoystickButton(this.operatorJoystick,
                 RobotMap.OPER_FALLBACK_SHOOT_BUTTON);
         this.fallbackShootButton.whileHeld(new ShooterFallbackShootCommand());
+
+        this.retractIntakeButton = new JoystickButton(this.operatorJoystick, RobotMap.OPER_INTAKE_RETRACT_BUTTON);
+        this.retractIntakeButton.whenPressed(new RetractIntakeCommand());
+
+        this.deployIntakeButton = new JoystickButton(this.operatorJoystick, RobotMap.OPER_INTAKE_DEPLOY_BUTTON);
+        this.deployIntakeButton.whenPressed(new DeployIntakeCommand());
     }
 
     /**
