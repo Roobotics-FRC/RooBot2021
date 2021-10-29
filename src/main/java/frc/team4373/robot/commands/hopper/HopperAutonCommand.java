@@ -9,10 +9,10 @@ import frc.team4373.robot.subsystems.Shooter;
 /**
  * A Javadoc template. TODO: Update HopperCommand Javadoc.
  */
-public class HopperCommand extends Command {
+public class HopperAutonCommand extends Command {
     private Hopper hopper;
 
-    public HopperCommand() {
+    public HopperAutonCommand() {
         requires(this.hopper = Hopper.getInstance());
     }
 
@@ -23,18 +23,7 @@ public class HopperCommand extends Command {
 
     @Override
     protected void execute() {
-        if (OI.getInstance().getOperatorJoystick().getRawAxis(RobotMap.OPER_HOPPER_AXIS) > 0.09) {
-            if (Shooter.getInstance().isRunning()) {
-                hopper.run();
-            } else {
-                hopper.stop();
-            }
-        } else if (OI.getInstance().getOperatorJoystick()
-                .getRawButton(RobotMap.OPER_HOPPER_DISLODGE_BUTTON)) {
-            hopper.dislodge();
-        } else {
-            hopper.stop();
-        }
+        hopper.run();
     }
 
     @Override
