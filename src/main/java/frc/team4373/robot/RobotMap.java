@@ -100,7 +100,7 @@ public class RobotMap {
     public static final double SHOOTER_MAX_SPEED_NATIVE_UNITS = 32500;
     public static final double DRIVE_SLOWER_SPEED_FACTOR = 4;
     public static final double AUTON_TURN_SPEED = 0.25;
-    public static final double AUTON_LINE_SHOOT_SPEED = 0.715;
+    public static final double AUTON_LINE_SHOOT_SPEED = 0.75;
     public static final double AUTON_DRIVE_SPEED = 0.2;
     public static final double GROUND_INTAKE_SPEED = 1;
     public static final double UPTAKE_INTAKE_SPEED = 0.45;
